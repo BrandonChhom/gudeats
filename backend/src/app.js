@@ -1,5 +1,9 @@
 // codeProjects/gudeats/backend/src/app.js
 
+/* 
+description: connects routes and middleware
+*/
+
 // imports
 import express from "express";
 
