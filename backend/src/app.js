@@ -6,11 +6,18 @@ description: connects routes and middleware
 
 // imports
 import express from "express";
+import cookieParser from "cookie-parser";
+import authRoutes from "./routes/authRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 
 // json parsing middleware
 app.use(express.json());
+
+// cookie parsing middleware
+app.use(cookieParser());
 
 // defining routes
 app.get("/api/health", (req, res) => {
@@ -22,10 +29,10 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// for server.js
-// const PORT = 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on hhtps://localhost:${POST}`);
-// });
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+
+// error handling middleware (must be last)
+app.use(errorHandler);
 
 export default app;
