@@ -6,13 +6,14 @@ import AppError from "../utils/AppError.js";
 const MAX_LIMIT = 50;
 const DEFAULT_LIMIT = 20;
 
-const createPost = async ({ authorId, caption, recipe, location }) => {
-  if (!caption && !recipe) {
-    throw new AppError("Post must include a caption or a recipe", 400);
+const createPost = async ({ authorId, imageUrl, caption, recipe, location }) => {
+  if (!imageUrl) {
+    throw new AppError("Post must include an image", 400);
   }
 
   const post = await Post.create({
     authorId,
+    imageUrl,
     caption,
     recipe,
     location,

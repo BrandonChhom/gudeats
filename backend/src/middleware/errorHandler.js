@@ -11,6 +11,20 @@ const errorHandler = (err, req, res, next) => {
     message = `${field} already in use`;
   }
 
+  // Multer upload errors (file too large, unexpected field, etc.)
+  if (err.name === "MulterError") {
+    statusCode = 400;
+    if (err.code === "LIMIT_FILE_SIZE") {
+      message = "Image must be smaller than 5MB";
+    }
+  }
+
+  // Malformed MongoDB ObjectId in a route param (e.g. :postId)
+  if (err.name === "CastError") {
+    statusCode = 400;
+    message = "Invalid ID format";
+  }
+
   res.status(statusCode).json({
     error: {
       message,

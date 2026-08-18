@@ -9,6 +9,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
+import feedRoutes from "./routes/feedRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
@@ -31,6 +32,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/feed", feedRoutes);
 
 // error handling middleware (must be last)
 app.use(errorHandler);

@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
+    imageUrl: {
+      type: String,
+      required: [true, "Image is required"],
+    },
     caption: {
       type: String,
       trim: true,
