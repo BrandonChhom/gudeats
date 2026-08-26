@@ -21,4 +21,13 @@ const uploadImageToCloudinary = (buffer) => {
   });
 };
 
+const deleteImageFromCloudinary = async (publicId) => {
+  try {
+    await cloudinary.uploader.destroy(publicId);
+  } catch (error) {
+    // best-effort cleanup; a failed delete here shouldn't mask the original error
+  }
+};
+
 export default uploadImageToCloudinary;
+export { deleteImageFromCloudinary };

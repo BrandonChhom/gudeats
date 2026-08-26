@@ -1,7 +1,8 @@
 // codeProjects/gudeats/backend/src/controllers/postController.js
 
 import { createPost, getPosts } from "../services/postService.js";
-import uploadImageToCloudinary from "../utils/uploadImageToCloudinary.js";
+import uploadImageToCloudinary, { deleteImageFromCloudinary } from "../utils/uploadImageToCloudinary.js";
+import checkFoodImage from "../utils/checkFoodImage.js";
 import AppError from "../utils/AppError.js";
 
 const create = async (req, res, next) => {
@@ -14,15 +15,30 @@ const create = async (req, res, next) => {
 
     const uploadResult = await uploadImageToCloudinary(req.file.buffer);
 
-    const post = await createPost({
-      authorId: req.user.id,
-      imageUrl: uploadResult.secure_url,
-      caption,
-      recipe,
-      location,
-    });
+    try {
+      const foodCheck = await checkFoodImage(uploadResult.secure_url);
 
-    res.status(201).json({ post });
+      // only a real verdict rejects; an unavailable validator lets the post through
+      if (foodCheck.checked && !foodCheck.isFood) {
+        throw new AppError("This image does not appear to contain food", 422);
+      }
+
+      const post = await createPost({
+        authorId: req.user.id,
+        imageUrl: uploadResult.secure_url,
+        foodLabel: foodCheck.checked ? foodCheck.label : undefined,
+        foodConfidence: foodCheck.checked ? foodCheck.confidence : undefined,
+        caption,
+        recipe,
+        location,
+      });
+
+      res.status(201).json({ post });
+    } catch (error) {
+      // the image is orphaned unless the post row was actually written
+      await deleteImageFromCloudinary(uploadResult.public_id);
+      throw error;
+    }
   } catch (error) {
     next(error);
   }

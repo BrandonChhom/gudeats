@@ -6,7 +6,15 @@ import AppError from "../utils/AppError.js";
 const MAX_LIMIT = 50;
 const DEFAULT_LIMIT = 20;
 
-const createPost = async ({ authorId, imageUrl, caption, recipe, location }) => {
+const createPost = async ({
+  authorId,
+  imageUrl,
+  foodLabel,
+  foodConfidence,
+  caption,
+  recipe,
+  location,
+}) => {
   if (!imageUrl) {
     throw new AppError("Post must include an image", 400);
   }
@@ -14,6 +22,8 @@ const createPost = async ({ authorId, imageUrl, caption, recipe, location }) => 
   const post = await Post.create({
     authorId,
     imageUrl,
+    foodLabel,
+    foodConfidence,
     caption,
     recipe,
     location,

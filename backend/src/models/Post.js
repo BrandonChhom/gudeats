@@ -13,6 +13,12 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, "Image is required"],
     },
+    foodLabel: {
+      type: String,
+    },
+    foodConfidence: {
+      type: Number,
+    },
     caption: {
       type: String,
       trim: true,
