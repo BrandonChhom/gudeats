@@ -1,0 +1,16 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 760, "h": 1600, "page": "design" },
+    { "file": "Zine.dc.html", "x": 860, "y": 0, "w": 760, "h": 1600, "page": "sketches" },
+    { "file": "Bistro.dc.html", "x": 1720, "y": 0, "w": 760, "h": 1600, "page": "sketches" }
+  ],
+  "annotations": [
+    { "id": "note-zine", "x": 860, "y": -120, "w": 760, "text": "Bold Playful — zine energy: marigold block, chunky type, thick outlines, rotated chip", "page": "sketches" },
+    { "id": "note-bistro", "x": 1720, "y": -120, "w": 760, "text": "Moody Minimal — dark, photography-first, restrained ember accent", "page": "sketches" }
+  ],
+  "pages": [
+    { "id": "design", "name": "GudEats" },
+    { "id": "sketches", "name": "Other directions" }
+  ],
+  "launch": { "view": "canvas", "page": "design" }
+}

@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@300;400;500;600&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .page {
+    width: 760px;
+    background: #17130F;
+    font-family: 'Manrope', system-ui, sans-serif;
+    color: #F1E9DC;
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 48px;
+    border-bottom: 1px solid rgba(241,233,220,0.12);
+  }
+  .brand {
+    font-family: 'Italiana', Georgia, serif;
+    font-size: 24px;
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #A79A89;
+  }
+  .nav-links a { text-decoration: none; color: inherit; }
+  .nav-links a:hover { color: #F1E9DC; }
+  .feed-head { padding: 48px 48px 40px; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #A79A89;
+    margin: 0 0 12px;
+  }
+  .feed-head h1 {
+    font-family: 'Italiana', Georgia, serif;
+    font-weight: 400;
+    font-size: 46px;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .feed {
+    display: flex;
+    flex-direction: column;
+    padding: 0 48px 64px;
+  }
+  .card {
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(241,233,220,0.12);
+  }
+  .card:first-child { padding-top: 0; }
+  .card-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(241,233,220,0.1);
+    color: #F1E9DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .username { font-size: 13px; letter-spacing: 0.03em; color: #A79A89; }
+  .card-image {
+    height: 360px;
+    background: #221C16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #56493A;
+  }
+  .card-body { padding-top: 22px; }
+  .caption {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 14px;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+  .meta {
+    font-size: 14px;
+    color: #A79A89;
+    line-height: 1.7;
+    margin: 0 0 4px;
+    font-weight: 300;
+  }
+  .meta .label {
+    color: #6E6255;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    margin-right: 10px;
+  }
+  .card-actions { display: flex; gap: 22px; padding-top: 20px; }
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #A79A89;
+    cursor: pointer;
+    padding: 0;
+  }
+  .action-btn svg { width: 16px; height: 16px; }
+</style>
+</helmet>
+<div class="page">
+  <nav class="navbar">
+    <div class="brand">GudEats</div>
+    <div class="nav-links">
+      <a href="#">Feed</a>
+      <a href="#">New Post</a>
+      <a href="#">mei.cooks</a>
+      <a href="#">Log out</a>
+    </div>
+  </nav>
+  <div class="feed-head">
+    <p class="eyebrow">Week of Aug 31 – Sep 6</p>
+    <h1>This week's spread</h1>
+  </div>
+  <div class="feed">
+    <article class="card">
+      <div class="card-author">
+        <span class="avatar">M</span>
+        <span class="username">mei.cooks</span>
+      </div>
+      <div class="card-image">
+        <svg viewBox="0 0 64 64" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M10 30h44"/>
+          <path d="M10 30a22 14 0 0 0 44 0"/>
+          <path d="M14 30a18 10 0 0 0 36 0"/>
+          <path d="M26 12c-2 3 2 4 0 7"/>
+          <path d="M34 10c-2 3 2 4 0 7"/>
+          <path d="M42 12c-2 3 2 4 0 7"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="caption">Brown butter pancakes, Sunday ritual.</p>
+        <p class="meta"><span class="label">Recipe</span>Browned the butter till it smelled nutty, folded into buttermilk batter, finished with maple + flaky salt.</p>
+        <p class="meta"><span class="label">Location</span>Home kitchen</p>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn" style="color: {{accent}}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 20.25c-.3 0-.6-.1-.8-.3C7 16.5 3.5 13.4 3.5 9.9 3.5 7.4 5.4 5.5 7.8 5.5c1.4 0 2.7.7 3.5 1.8.8-1.1 2.1-1.8 3.5-1.8 2.4 0 4.3 1.9 4.3 4.4 0 3.5-3.5 6.6-7.7 10.05-.2.2-.5.3-.8.3z"/></svg>
+          24
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M4 5.5h16a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.5 4v-4H4A1.5 1.5 0 0 1 2.5 16V7A1.5 1.5 0 0 1 4 5.5z"/></svg>
+          6
+        </button>
+      </div>
+    </article>
+    <article class="card">
+      <div class="card-author">
+        <span class="avatar">D</span>
+        <span class="username">danny_grills</span>
+      </div>
+      <div class="card-image">
+        <svg viewBox="0 0 64 64" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M10 30h44"/>
+          <path d="M10 30a22 14 0 0 0 44 0"/>
+          <path d="M14 30a18 10 0 0 0 36 0"/>
+          <path d="M26 12c-2 3 2 4 0 7"/>
+          <path d="M34 10c-2 3 2 4 0 7"/>
+          <path d="M42 12c-2 3 2 4 0 7"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="caption">First brisket of the season — 14 hour smoke.</p>
+        <p class="meta"><span class="label">Recipe</span>Dry rub overnight, smoked low at 225°F, wrapped at the stall.</p>
+        <p class="meta"><span class="label">Location</span>Backyard smoker</p>
+      </div>
+      <div class="card-actions">
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 20.25c-.3 0-.6-.1-.8-.3C7 16.5 3.5 13.4 3.5 9.9 3.5 7.4 5.4 5.5 7.8 5.5c1.4 0 2.7.7 3.5 1.8.8-1.1 2.1-1.8 3.5-1.8 2.4 0 4.3 1.9 4.3 4.4 0 3.5-3.5 6.6-7.7 10.05-.2.2-.5.3-.8.3z"/></svg>
+          41
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M4 5.5h16a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-4.5 4v-4H4A1.5 1.5 0 0 1 2.5 16V7A1.5 1.5 0 0 1 4 5.5z"/></svg>
+          12
+        </button>
+      </div>
+    </article>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#D98A4A","options":["#D98A4A","#C9773A","#B4A07A","#8F9779"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#D98A4A' };
+  }
+}
+</script>
+</body>
+</html>
