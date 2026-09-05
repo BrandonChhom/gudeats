@@ -1,6 +1,6 @@
 // codeProjects/gudeats/backend/src/controllers/postController.js
 
-import { createPost, getPosts } from "../services/postService.js";
+import { createPost, getPosts, deletePost } from "../services/postService.js";
 import uploadImageToCloudinary, { deleteImageFromCloudinary } from "../utils/uploadImageToCloudinary.js";
 import checkFoodImage from "../utils/checkFoodImage.js";
 import AppError from "../utils/AppError.js";
@@ -26,6 +26,7 @@ const create = async (req, res, next) => {
       const post = await createPost({
         authorId: req.user.id,
         imageUrl: uploadResult.secure_url,
+        imagePublicId: uploadResult.public_id,
         foodLabel: foodCheck.checked ? foodCheck.label : undefined,
         foodConfidence: foodCheck.checked ? foodCheck.confidence : undefined,
         caption,
@@ -56,4 +57,14 @@ const list = async (req, res, next) => {
   }
 };
 
-export { create, list };
+const remove = async (req, res, next) => {
+  try {
+    await deletePost({ postId: req.params.postId, userId: req.user.id });
+
+    res.status(200).json({ message: "Post deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { create, list, remove };

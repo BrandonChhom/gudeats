@@ -13,6 +13,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, "Image is required"],
     },
+    imagePublicId: {
+      type: String,
+    },
     foodLabel: {
       type: String,
     },

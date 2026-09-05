@@ -1,7 +1,7 @@
 // codeProjects/gudeats/backend/src/routes/postRoutes.js
 
 import express from "express";
-import { create, list } from "../controllers/postController.js";
+import { create, list, remove } from "../controllers/postController.js";
 import { like, unlike, status } from "../controllers/likeController.js";
 import { create as createComment, list as listComments } from "../controllers/commentController.js";
 import protect from "../middleware/authMiddleware.js";
@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.post("/", protect, upload.single("image"), create);
 router.get("/", list);
+router.delete("/:postId", protect, remove);
 
 router.post("/:postId/likes", protect, like);
 router.delete("/:postId/likes", protect, unlike);
